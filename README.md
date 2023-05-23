@@ -7,4 +7,4 @@ This repository contains three files. The file `implementation.R` contains four 
 * `practical.m.alpha0`: Find practical values of the input parameters for *unknown* effect size by searching for the minimum effect size required to achieve $\rho$ power for a given public hypothesis test.
 * Helper functions `rtulap`, `ptulap`, `dp.binom.p.val`, and `dp.binom.alt.prob`: implementation of the binomial test described in Awan and Slavkovic's *Differentially Private Uniformly Most Powerful Tests for Binomial Data*.
 
-The file `examples.Rmd` and corresponding compiled `examples.pdf` walk through an example of the use of these functions when the public test is a one-sample t-test.
+The file `examples.Rmd` and corresponding compiled `examples.pdf` walk through an example of the use of these functions when the public test is a one-sample t-test. The file `figures.Rmd` and corresponding compiled `figures.pdf` contain the code to create all figures in the arXiv version of the paper. The runs used to create these plots are stored in the `figures` folder and the plots are stored in `arXiv_plots`.
