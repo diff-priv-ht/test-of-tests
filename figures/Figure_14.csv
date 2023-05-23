@@ -1,0 +1,105 @@
+n,power,test,eps,eff,g
+10,0.03,Private ANOVA,0.1,25,2
+20,0.036,Private ANOVA,0.1,25,2
+30,0.046,Private ANOVA,0.1,25,2
+40,0.06,Private ANOVA,0.1,25,2
+50,0.042,Private ANOVA,0.1,25,2
+70,0.042,Private ANOVA,0.1,25,2
+90,0.05,Private ANOVA,0.1,25,2
+120,0.046,Private ANOVA,0.1,25,2
+150,0.07,Private ANOVA,0.1,25,2
+190,0.084,Private ANOVA,0.1,25,2
+240,0.122,Private ANOVA,0.1,25,2
+300,0.118,Private ANOVA,0.1,25,2
+400,0.2,Private ANOVA,0.1,25,2
+500,0.29,Private ANOVA,0.1,25,2
+600,0.348,Private ANOVA,0.1,25,2
+720,0.5,Private ANOVA,0.1,25,2
+900,0.746,Private ANOVA,0.1,25,2
+1000,0.822,Private ANOVA,0.1,25,2
+1100,0.868,Private ANOVA,0.1,25,2
+1200,0.888,Private ANOVA,0.1,25,2
+1300,0.912,Private ANOVA,0.1,25,2
+1400,0.928,Private ANOVA,0.1,25,2
+1500,0.94,Private ANOVA,0.1,25,2
+1600,0.942,Private ANOVA,0.1,25,2
+1700,0.964,Private ANOVA,0.1,25,2
+1800,0.98,Private ANOVA,0.1,25,2
+1900,0.982,Private ANOVA,0.1,25,2
+2000,0.97,Private ANOVA,0.1,25,2
+12,0.06,Private KW,0.1,25,2
+22,0.072,Private KW,0.1,25,2
+38,0.077,Private KW,0.1,25,2
+62,0.071,Private KW,0.1,25,2
+100,0.124,Private KW,0.1,25,2
+160,0.309,Private KW,0.1,25,2
+248,0.73,Private KW,0.1,25,2
+380,0.929,Private KW,0.1,25,2
+570,0.994,Private KW,0.1,25,2
+842,1,Private KW,0.1,25,2
+1226,1,Private KW,0.1,25,2
+1760,1,Private KW,0.1,25,2
+2496,1,Private KW,0.1,25,2
+3498,1,Private KW,0.1,25,2
+4848,1,Private KW,0.1,25,2
+6650,1,Private KW,0.1,25,2
+9034,1,Private KW,0.1,25,2
+12162,1,Private KW,0.1,25,2
+16232,1,Private KW,0.1,25,2
+21490,1,Private KW,0.1,25,2
+4,0.916989925586055,pub,100,25,2
+5,0.998000788436318,pub,100,25,2
+6,0.999978720079393,pub,100,25,2
+7,0.999999842806731,pub,100,25,2
+8,0.999999999060834,pub,100,25,2
+9,0.999999999995414,pub,100,25,2
+10,0.999999999999982,pub,100,25,2
+20,1,pub,100,25,2
+30,1,pub,100,25,2
+40,1,pub,100,25,2
+50,1,pub,100,25,2
+70,1,pub,100,25,2
+90,1,pub,100,25,2
+120,1,pub,100,25,2
+150,1,pub,100,25,2
+190,1,pub,100,25,2
+240,1,pub,100,25,2
+300,1,pub,100,25,2
+1000,1,pub,100,25,2
+6,0.0534,Test of tests,0.1,25,2
+8,0.0486,Test of tests,0.1,25,2
+10,0.0564,Test of tests,0.1,25,2
+20,0.0632,Test of tests,0.1,25,2
+30,0.0742,Test of tests,0.1,25,2
+40,0.0952,Test of tests,0.1,25,2
+50,0.1098,Test of tests,0.1,25,2
+60,0.126,Test of tests,0.1,25,2
+70,0.1472,Test of tests,0.1,25,2
+80,0.1658,Test of tests,0.1,25,2
+90,0.2056,Test of tests,0.1,25,2
+100,0.2202,Test of tests,0.1,25,2
+110,0.2676,Test of tests,0.1,25,2
+120,0.3194,Test of tests,0.1,25,2
+130,0.3656,Test of tests,0.1,25,2
+140,0.4252,Test of tests,0.1,25,2
+150,0.5222,Test of tests,0.1,25,2
+160,0.5508,Test of tests,0.1,25,2
+170,0.6198,Test of tests,0.1,25,2
+180,0.6982,Test of tests,0.1,25,2
+190,0.7182,Test of tests,0.1,25,2
+200,0.7688,Test of tests,0.1,25,2
+250,0.8974,Test of tests,0.1,25,2
+300,0.9562,Test of tests,0.1,25,2
+350,0.9746,Test of tests,0.1,25,2
+400,0.9896,Test of tests,0.1,25,2
+450,0.9938,Test of tests,0.1,25,2
+500,0.9986,Test of tests,0.1,25,2
+550,0.9992,Test of tests,0.1,25,2
+600,0.9998,Test of tests,0.1,25,2
+650,0.9998,Test of tests,0.1,25,2
+700,0.9998,Test of tests,0.1,25,2
+800,1,Test of tests,0.1,25,2
+850,1,Test of tests,0.1,25,2
+900,1,Test of tests,0.1,25,2
+950,1,Test of tests,0.1,25,2
+1000,1,Test of tests,0.1,25,2
