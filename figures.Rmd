@@ -92,13 +92,13 @@ Figure_5 %>%
                           test == "Pena & Barrientos" ~ "PB")) %>%
   ggplot(aes(x = theta, y = power, color = test)) +
   geom_line(linewidth =  1) +
-  facet_grid(cols = vars(epsilon), labeller = label_parsed) +
+  facet_grid(rows = vars(epsilon), labeller = label_parsed) +
   labs(x = expression("Effect Size, "*theta), color = "", y = "Power") +
   scale_color_manual(values = plot_colors[c(5,3)]) +
   scale_x_continuous(labels = c(0, 0.25, 0.5, 0.75, 1)) +
   theme_tufte()
 
-ggsave("ArXiv_plots/Fig5.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig5.png", width = 6.75, height = 1.75*2,
        dpi=600, units = "in")
 ```
 
