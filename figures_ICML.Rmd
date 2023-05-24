@@ -1,0 +1,331 @@
+---
+title: "Figures from ArXiv Version of Paper"
+output: pdf_document
+---
+
+The code in this document creates the plots in the text of the ArXiv version of the paper (as of March 2023) using the saved power computations in the `figures` folder.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 8, fig.height = 1.75)
+library(readr)
+library(tidyverse)
+library(ggthemes)
+library(purrr)
+
+plot_colors <- c("#F8766D", # Public Test
+                 "#B79F00", # Canonne et al. (CKMUZ)
+                 "#00BA38", # Pena-Barrientos (PB)
+                 "#00BFC4", # Swanberg et al. (SGGRGB)
+                 "#619CFF", # Test of Tests (ToT)/ Awan and Slavkovic (AS)
+                 "#F564E3") # Couch et al. (CKSBG)
+```
+
+The following creates Figure 2 comparing ToT to PB.
+
+```{r, fig.height = 3}
+Figure_2 <- read_csv("figures/Figure_2.csv", show_col_types = FALSE)
+
+Figure_2 %>%
+  # Adjust Order of Tests in Legend
+  mutate(test = factor(test, levels = c("Public Test", "ToT", "PB"))) %>%
+  # Create a Variable of Facet Labels
+  mutate(eff = paste0("mu*' = ", eff,", '*epsilon*' = ", eps,"'")) %>%
+  ggplot(aes(x = n, y = power, color = test)) +
+  geom_line(linewidth =  1) +
+  facet_grid(rows = vars(eff), labeller = label_parsed) +
+  scale_color_manual(values = plot_colors[c(1,5,3)]) +
+  labs(x = "Total Sample Size, n", y = "Power", color = "") +
+  theme_tufte() +
+  theme(legend.position="bottom", legend.margin=margin(-10,0,0,-20))
+
+ggsave("ICML_plots/Fig2.png", width = 3.25, height = 4, 
+       dpi=600, units = "in")
+```
+
+The following creates Figure 3 comparing ToT to CKMUZ.
+
+```{r, fig.height = 3}
+Figure_3 <- read_csv("figures/Figure_3.csv", show_col_types = FALSE)
+
+Figure_3 %>%
+  # Adjust Order of Tests in Legend
+  mutate(test = factor(test, levels = c("Public Test", "ToT", "CKMUZ"))) %>%
+  # Create a Variable of Facet Labels
+  mutate(eff = case_when(eff == 0.5 ~ "mu*' = 0.5 in one dim.'",
+                         eff == 0.1 ~ "mu*' = 0.1 in all dim.'")) %>%
+  ggplot(aes(x = n, y = power, color = test)) + 
+  geom_line(linewidth =  1) + 
+  facet_grid(rows = vars(eff), labeller = label_parsed) +
+  labs(x = "Total Sample Size, n", y = "Power", color = "") +
+  scale_x_log10() + theme_tufte() +
+  scale_color_manual(values = plot_colors[c(1,5,2)]) + 
+  theme(legend.position="bottom", legend.margin=margin(0,0,0,-20),
+        plot.margin=grid::unit(c(0,0,0,0), "mm"))
+
+ggsave("ICML_plots/Fig3.png", width = 3.25, height = 4, 
+       dpi=600, units = "in")
+```
+
+The following creates Figure 4 comparing ToT to CKSBG and SGGRGB.
+
+```{r}
+Figure_4 <- read_csv("figures/Figure_4.csv", show_col_types = FALSE)
+
+Figure_4 %>%
+  # Adjust Order of Tests in Legend
+  mutate(test = factor(test, levels = c("Public Test", "ToT",
+                                        "CKSBG", "SGGRGB"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + geom_line(linewidth =  1) +
+  labs(x = "Total Sample Size, n", y = "Power", color = "") + 
+  scale_x_log10() + theme_tufte() +
+  scale_color_manual(values = plot_colors[c(1,5,6,4)]) + 
+  theme(legend.position="bottom", legend.margin=margin(0,0,0,-20),
+      plot.margin=grid::unit(c(0,0,0,0), "mm")) +
+  guides(color=guide_legend(nrow=2, byrow=TRUE))
+
+ggsave("ICML_plots/Fig4.png", width = 3.25, height = 2.75,
+       dpi=600, units = "in")
+```
+
+The following creates Figure 5 in the appendix comparing AS to PB.
+
+```{r}
+Figure_5 <- read_csv("figures/Figure_5.csv", show_col_types = FALSE)
+
+Figure_5 %>%
+  mutate(epsilon = paste0("epsilon*' = ", eps,"'")) %>%
+  mutate(test = case_when(test == "Awan & Slavkovic" ~ "AS", 
+                          test == "Pena & Barrientos" ~ "PB")) %>%
+  ggplot(aes(x = theta, y = power, color = test)) +
+  geom_line(linewidth =  1) +
+  facet_grid(rows = vars(epsilon), labeller = label_parsed) +
+  labs(x = expression("Effect Size, "*theta), color = "", y = "Power") +
+  scale_color_manual(values = plot_colors[c(5,3)]) +
+  scale_x_continuous(labels = c(0, 0.25, 0.5, 0.75, 1)) +
+  theme_tufte()
+
+ggsave("ICML_plots/Fig5.png", width = 6.75, height = 1.75*2,
+       dpi=600, units = "in")
+```
+
+The following creates Figures 6-7 in the appendix comparing ToT to PB.
+
+```{r}
+Figure_6 <- read_csv("figures/Figure_6.csv", show_col_types = FALSE)
+
+Figure_6 %>%
+  mutate(test = case_when(test == "Public" ~ "Public Test", 
+                          test == "PB" ~ "PB",
+                          test == "ToT" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT", "PB"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) +
+  geom_line(linewidth =  1) +
+  scale_color_manual(values = plot_colors[c(1,5,3)]) +
+  labs(x = "Total Sample Size, n", y = "Power", color = "") +
+  theme_tufte()
+
+ggsave("ICML_plots/Fig6.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+```{r}
+Figure_7 <- read_csv("figures/Figure_7.csv", show_col_types = FALSE)
+
+Figure_7 %>%
+  mutate(test = case_when(test == "Public" ~ "Public Test", 
+                          test == "PB" ~ "PB",
+                          test == "ToT" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT", "PB"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) +
+  geom_line(linewidth =  1) +
+  scale_color_manual(values = plot_colors[c(1,5,3)]) +
+  labs(x = "Total Sample Size, n", y = "Power", color = "") +
+  theme_tufte()
+
+ggsave("ICML_plots/Fig7.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+The following creates Figures 8-12 in the appendix comparing ToT to CKMUZ.
+
+```{r}
+Figure_8 <- read_csv("figures/Figure_8.csv", show_col_types = FALSE)
+
+Figure_8 %>%
+  mutate(test = case_when(test == "Public" ~ "Public Test", 
+                          test == "Canonne" ~ "CKMUZ",
+                          test == "Test of tests" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT", "CKMUZ"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + 
+  geom_line(linewidth =  1) + 
+  labs(x = "Total Sample Size, n", y = "Type I Error", color = "") +
+  scale_x_log10() + theme_tufte() + ylim(0,1) + 
+  scale_color_manual(values = plot_colors[c(1,5,2)])
+
+ggsave("ICML_plots/Fig8.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+```{r}
+Figure_9 <- read_csv("figures/Figure_9.csv", show_col_types = FALSE)
+
+Figure_9 %>%
+  filter(!(test == "Canonne" & n < 359)) %>%
+  mutate(test = case_when(test == "Public" ~ "Public Test", 
+                          test == "Canonne" ~ "CKMUZ",
+                          test == "Test of tests" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT", "CKMUZ"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + 
+  geom_line(linewidth =  1) + 
+  labs(x = "Total Sample Size, n", y = "Power", color = "") +
+  scale_x_log10() + theme_tufte() + 
+  scale_color_manual(values = plot_colors[c(1,5,2)])
+
+ggsave("ICML_plots/Fig9.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+```{r}
+Figure_10 <- read_csv("figures/Figure_10.csv", show_col_types = FALSE)
+
+Figure_10 %>%
+  filter(!(test == "Canonne" & n < 359)) %>%
+  mutate(test = case_when(test == "Public" ~ "Public Test", 
+                          test == "Canonne" ~ "CKMUZ",
+                          test == "Test of tests" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT", "CKMUZ"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + 
+  geom_line(linewidth =  1) + 
+  labs(x = "Total Sample Size, n", y = "Power", color = "") +
+  scale_x_log10() + theme_tufte() + 
+  scale_color_manual(values = plot_colors[c(1,5,2)])
+
+ggsave("ICML_plots/Fig10.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+```{r}
+Figure_11 <- read_csv("figures/Figure_11.csv", show_col_types = FALSE)
+
+Figure_11 %>%
+  filter(!(test == "Canonne" & n < 359)) %>%
+  mutate(test = case_when(test == "Public" ~ "Public Test", 
+                          test == "Canonne" ~ "CKMUZ",
+                          test == "Test of tests" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT", "CKMUZ"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + 
+  geom_line(linewidth =  1) + 
+  labs(x = "Total Sample Size, n", y = "Power", color = "") +
+  scale_x_log10() + theme_tufte() + 
+  scale_color_manual(values = plot_colors[c(1,5,2)])
+
+ggsave("ICML_plots/Fig11.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+```{r}
+Figure_12 <- read_csv("figures/Figure_12.csv", show_col_types = FALSE)
+
+Figure_12 %>%
+  filter(!(test == "Canonne" & n <= 400)) %>%
+  mutate(test = case_when(test == "Public" ~ "Public Test", 
+                          test == "Canonne" ~ "CKMUZ",
+                          test == "Test of tests" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT", "CKMUZ"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + 
+  geom_line(linewidth =  1) + 
+  labs(x = "Total Sample Size, n", y = "Power", color = "") +
+  scale_x_log10() + theme_tufte() + 
+  scale_color_manual(values = plot_colors[c(1,5,2)])
+
+ggsave("ICML_plots/Fig12.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+```{r}
+Figure_13 <- read_csv("figures/Figure_13.csv", show_col_types = FALSE)
+
+Figure_13 %>%
+  filter(eps == 1, n <= 1226) %>%
+  filter(test %in% c("Public ANOVA", "kw abs", "Private ANOVA",
+                     "Test of tests")) %>%
+  mutate(test = case_when(test == "Public ANOVA" ~ "Public Test", 
+                          test == "Private ANOVA" ~ "SGGRGB",
+                          test == "kw abs" ~ "CKSBG",
+                          test == "Test of tests" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT",
+                                        "CKSBG", "SGGRGB"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + geom_line(linewidth =  1) +
+  labs(x = "Total Sample Size, n", y = "Power", color = "") + 
+  scale_x_log10() + theme_tufte() +
+  scale_color_manual(values = plot_colors[c(1,5,6,4)])
+
+ggsave("ICML_plots/Fig13.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+```{r}
+Figure_14 <- read_csv("figures/Figure_14.csv", show_col_types = FALSE)
+
+Figure_14 %>%
+  filter(n <= 1226) %>%
+  filter(test %in% c("pub", "Private KW", "Private ANOVA",
+                     "Test of tests")) %>%
+  mutate(test = case_when(test == "pub" ~ "Public Test", 
+                          test == "Private ANOVA" ~ "SGGRGB",
+                          test == "Private KW" ~ "CKSBG",
+                          test == "Test of tests" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT",
+                                        "CKSBG", "SGGRGB"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + geom_line(linewidth =  1) +
+  labs(x = "Total Sample Size, n", y = "Power", color = "") + 
+  scale_x_log10() + theme_tufte() +
+  scale_color_manual(values = plot_colors[c(1,5,6,4)])
+
+ggsave("ICML_plots/Fig14.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+```{r}
+Figure_15 <- read_csv("figures/Figure_15.csv", show_col_types = FALSE)
+
+Figure_15 %>%
+  filter(n <= 1226) %>%
+  filter(test %in% c("pub", "Private KW", "Private ANOVA",
+                     "Test of tests")) %>%
+  mutate(test = case_when(test == "pub" ~ "Public Test", 
+                          test == "Private ANOVA" ~ "SGGRGB",
+                          test == "Private KW" ~ "CKSBG",
+                          test == "Test of tests" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT",
+                                        "CKSBG", "SGGRGB"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + geom_line(linewidth =  1) +
+  labs(x = "Total Sample Size, n", y = "Power", color = "") + 
+  scale_x_log10() + theme_tufte() +
+  scale_color_manual(values = plot_colors[c(1,5,6,4)])
+
+ggsave("ICML_plots/Fig15.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
+
+```{r}
+Figure_16 <- read_csv("figures/Figure_16.csv", show_col_types = FALSE)
+
+Figure_16 %>%
+  filter(n <= 1311) %>%
+  filter(test %in% c("Public KW", "New KW", "Private ANOVA",
+                     "Test of tests")) %>%
+  mutate(test = case_when(test == "Public KW" ~ "Public Test", 
+                          test == "Private ANOVA" ~ "SGGRGB",
+                          test == "New KW" ~ "CKSBG",
+                          test == "Test of tests" ~ "ToT")) %>%
+  mutate(test = factor(test, levels = c("Public Test", "ToT",
+                                        "CKSBG", "SGGRGB"))) %>%
+  ggplot(aes(x = n, y = power, color = test)) + geom_line(linewidth =  1) +
+  labs(x = "Total Sample Size, n", y = "Power", color = "") + 
+  scale_x_log10() + theme_tufte() +
+  scale_color_manual(values = plot_colors[c(1,5,6,4)])
+
+ggsave("ICML_plots/Fig16.png", width = 6.75, height = 1.75,
+       dpi=600, units = "in")
+```
