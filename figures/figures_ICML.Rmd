@@ -1,5 +1,5 @@
 ---
-title: "Figures from ArXiv Version of Paper"
+title: "Figures from ICML Version of Paper"
 output: pdf_document
 ---
 
@@ -23,7 +23,7 @@ plot_colors <- c("#F8766D", # Public Test
 The following creates Figure 2 comparing ToT to PB.
 
 ```{r, fig.height = 3}
-Figure_2 <- read_csv("figures/Figure_2.csv", show_col_types = FALSE)
+Figure_2 <- read_csv("figures_data/Figure_2.csv", show_col_types = FALSE)
 
 Figure_2 %>%
   # Adjust Order of Tests in Legend
@@ -35,16 +35,17 @@ Figure_2 %>%
   facet_grid(rows = vars(eff), labeller = label_parsed) +
   scale_color_manual(values = plot_colors[c(1,5,3)]) +
   labs(x = "Total Sample Size, n", y = "Power", color = "") +
-  theme_tufte()
+  theme_tufte() +
+  theme(legend.position="bottom", legend.margin=margin(-10,0,0,-20))
 
-ggsave("ArXiv_plots/Fig2.png", width = 6.75, height = 3, 
+ggsave("ICML_plots/Fig2.png", width = 3.25, height = 4, 
        dpi=600, units = "in")
 ```
 
 The following creates Figure 3 comparing ToT to CKMUZ.
 
 ```{r, fig.height = 3}
-Figure_3 <- read_csv("figures/Figure_3.csv", show_col_types = FALSE)
+Figure_3 <- read_csv("figures_data/Figure_3.csv", show_col_types = FALSE)
 
 Figure_3 %>%
   # Adjust Order of Tests in Legend
@@ -57,16 +58,18 @@ Figure_3 %>%
   facet_grid(rows = vars(eff), labeller = label_parsed) +
   labs(x = "Total Sample Size, n", y = "Power", color = "") +
   scale_x_log10() + theme_tufte() +
-  scale_color_manual(values = plot_colors[c(1,5,2)])
+  scale_color_manual(values = plot_colors[c(1,5,2)]) + 
+  theme(legend.position="bottom", legend.margin=margin(0,0,0,-20),
+        plot.margin=grid::unit(c(0,0,0,0), "mm"))
 
-ggsave("ArXiv_plots/Fig3.png", width = 6.75, height = 3, 
+ggsave("ICML_plots/Fig3.png", width = 3.25, height = 4, 
        dpi=600, units = "in")
 ```
 
 The following creates Figure 4 comparing ToT to CKSBG and SGGRGB.
 
 ```{r}
-Figure_4 <- read_csv("figures/Figure_4.csv", show_col_types = FALSE)
+Figure_4 <- read_csv("figures_data/Figure_4.csv", show_col_types = FALSE)
 
 Figure_4 %>%
   # Adjust Order of Tests in Legend
@@ -75,16 +78,19 @@ Figure_4 %>%
   ggplot(aes(x = n, y = power, color = test)) + geom_line(linewidth =  1) +
   labs(x = "Total Sample Size, n", y = "Power", color = "") + 
   scale_x_log10() + theme_tufte() +
-  scale_color_manual(values = plot_colors[c(1,5,6,4)])
+  scale_color_manual(values = plot_colors[c(1,5,6,4)]) + 
+  theme(legend.position="bottom", legend.margin=margin(0,0,0,-20),
+      plot.margin=grid::unit(c(0,0,0,0), "mm")) +
+  guides(color=guide_legend(nrow=2, byrow=TRUE))
 
-ggsave("ArXiv_plots/Fig4.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig4.png", width = 3.25, height = 2.75,
        dpi=600, units = "in")
 ```
 
 The following creates Figure 5 in the appendix comparing AS to PB.
 
-```{r}
-Figure_5 <- read_csv("figures/Figure_5.csv", show_col_types = FALSE)
+```{r, fig.height = 3}
+Figure_5 <- read_csv("figures_data/Figure_5.csv", show_col_types = FALSE)
 
 Figure_5 %>%
   mutate(epsilon = paste0("epsilon*' = ", eps,"'")) %>%
@@ -98,14 +104,14 @@ Figure_5 %>%
   scale_x_continuous(labels = c(0, 0.25, 0.5, 0.75, 1)) +
   theme_tufte()
 
-ggsave("ArXiv_plots/Fig5.png", width = 6.75, height = 1.75*2,
+ggsave("ICML_plots/Fig5.png", width = 6.75, height = 1.75*2,
        dpi=600, units = "in")
 ```
 
 The following creates Figures 6-7 in the appendix comparing ToT to PB.
 
 ```{r}
-Figure_6 <- read_csv("figures/Figure_6.csv", show_col_types = FALSE)
+Figure_6 <- read_csv("figures_data/Figure_6.csv", show_col_types = FALSE)
 
 Figure_6 %>%
   mutate(test = case_when(test == "Public" ~ "Public Test", 
@@ -118,12 +124,12 @@ Figure_6 %>%
   labs(x = "Total Sample Size, n", y = "Power", color = "") +
   theme_tufte()
 
-ggsave("ArXiv_plots/Fig6.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig6.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 ```{r}
-Figure_7 <- read_csv("figures/Figure_7.csv", show_col_types = FALSE)
+Figure_7 <- read_csv("figures_data/Figure_7.csv", show_col_types = FALSE)
 
 Figure_7 %>%
   mutate(test = case_when(test == "Public" ~ "Public Test", 
@@ -136,14 +142,14 @@ Figure_7 %>%
   labs(x = "Total Sample Size, n", y = "Power", color = "") +
   theme_tufte()
 
-ggsave("ArXiv_plots/Fig7.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig7.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 The following creates Figures 8-12 in the appendix comparing ToT to CKMUZ.
 
 ```{r}
-Figure_8 <- read_csv("figures/Figure_8.csv", show_col_types = FALSE)
+Figure_8 <- read_csv("figures_data/Figure_8.csv", show_col_types = FALSE)
 
 Figure_8 %>%
   mutate(test = case_when(test == "Public" ~ "Public Test", 
@@ -156,12 +162,12 @@ Figure_8 %>%
   scale_x_log10() + theme_tufte() + ylim(0,1) + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig8.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig8.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 ```{r}
-Figure_9 <- read_csv("figures/Figure_9.csv", show_col_types = FALSE)
+Figure_9 <- read_csv("figures_data/Figure_9.csv", show_col_types = FALSE)
 
 Figure_9 %>%
   filter(!(test == "Canonne" & n < 359)) %>%
@@ -175,12 +181,12 @@ Figure_9 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig9.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig9.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 ```{r}
-Figure_10 <- read_csv("figures/Figure_10.csv", show_col_types = FALSE)
+Figure_10 <- read_csv("figures_data/Figure_10.csv", show_col_types = FALSE)
 
 Figure_10 %>%
   filter(!(test == "Canonne" & n < 359)) %>%
@@ -194,12 +200,12 @@ Figure_10 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig10.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig10.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 ```{r}
-Figure_11 <- read_csv("figures/Figure_11.csv", show_col_types = FALSE)
+Figure_11 <- read_csv("figures_data/Figure_11.csv", show_col_types = FALSE)
 
 Figure_11 %>%
   filter(!(test == "Canonne" & n < 359)) %>%
@@ -213,12 +219,12 @@ Figure_11 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig11.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig11.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 ```{r}
-Figure_12 <- read_csv("figures/Figure_12.csv", show_col_types = FALSE)
+Figure_12 <- read_csv("figures_data/Figure_12.csv", show_col_types = FALSE)
 
 Figure_12 %>%
   filter(!(test == "Canonne" & n <= 400)) %>%
@@ -232,12 +238,12 @@ Figure_12 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig12.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig12.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 ```{r}
-Figure_13 <- read_csv("figures/Figure_13.csv", show_col_types = FALSE)
+Figure_13 <- read_csv("figures_data/Figure_13.csv", show_col_types = FALSE)
 
 Figure_13 %>%
   filter(eps == 1, n <= 1226) %>%
@@ -254,12 +260,12 @@ Figure_13 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ArXiv_plots/Fig13.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig13.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 ```{r}
-Figure_14 <- read_csv("figures/Figure_14.csv", show_col_types = FALSE)
+Figure_14 <- read_csv("figures_data/Figure_14.csv", show_col_types = FALSE)
 
 Figure_14 %>%
   filter(n <= 1226) %>%
@@ -276,12 +282,12 @@ Figure_14 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ArXiv_plots/Fig14.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig14.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 ```{r}
-Figure_15 <- read_csv("figures/Figure_15.csv", show_col_types = FALSE)
+Figure_15 <- read_csv("figures_data/Figure_15.csv", show_col_types = FALSE)
 
 Figure_15 %>%
   filter(n <= 1226) %>%
@@ -298,12 +304,12 @@ Figure_15 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ArXiv_plots/Fig15.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig15.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
 ```{r}
-Figure_16 <- read_csv("figures/Figure_16.csv", show_col_types = FALSE)
+Figure_16 <- read_csv("figures_data/Figure_16.csv", show_col_types = FALSE)
 
 Figure_16 %>%
   filter(n <= 1311) %>%
@@ -320,6 +326,6 @@ Figure_16 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ArXiv_plots/Fig16.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig16.png", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
