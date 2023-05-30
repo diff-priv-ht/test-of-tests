@@ -38,8 +38,8 @@ Figure_2 %>%
   theme_tufte() +
   theme(legend.position="bottom", legend.margin=margin(-10,0,0,-20))
 
-ggsave("ICML_plots/Fig2.png", width = 3.25, height = 4, 
-       dpi=600, units = "in")
+ggsave("ICML_plots/Fig2.pdf", width = 3.25, height = 4, 
+       dpi=600, units = "in", device = "pdf")
 ```
 
 The following creates Figure 3 comparing ToT to CKMUZ.
@@ -62,7 +62,7 @@ Figure_3 %>%
   theme(legend.position="bottom", legend.margin=margin(0,0,0,-20),
         plot.margin=grid::unit(c(0,0,0,0), "mm"))
 
-ggsave("ICML_plots/Fig3.png", width = 3.25, height = 4, 
+ggsave("ICML_plots/Fig3.pdf", width = 3.25, height = 4, 
        dpi=600, units = "in")
 ```
 
@@ -83,7 +83,7 @@ Figure_4 %>%
       plot.margin=grid::unit(c(0,0,0,0), "mm")) +
   guides(color=guide_legend(nrow=2, byrow=TRUE))
 
-ggsave("ICML_plots/Fig4.png", width = 3.25, height = 2.75,
+ggsave("ICML_plots/Fig4.pdf", width = 3.25, height = 2.75,
        dpi=600, units = "in")
 ```
 
@@ -104,7 +104,7 @@ Figure_5 %>%
   scale_x_continuous(labels = c(0, 0.25, 0.5, 0.75, 1)) +
   theme_tufte()
 
-ggsave("ICML_plots/Fig5.png", width = 6.75, height = 1.75*2,
+ggsave("ICML_plots/Fig5.pdf", width = 6.75, height = 1.75*2,
        dpi=600, units = "in")
 ```
 
@@ -124,7 +124,7 @@ Figure_6 %>%
   labs(x = "Total Sample Size, n", y = "Power", color = "") +
   theme_tufte()
 
-ggsave("ICML_plots/Fig6.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig6.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -142,7 +142,7 @@ Figure_7 %>%
   labs(x = "Total Sample Size, n", y = "Power", color = "") +
   theme_tufte()
 
-ggsave("ICML_plots/Fig7.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig7.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -162,7 +162,7 @@ Figure_8 %>%
   scale_x_log10() + theme_tufte() + ylim(0,1) + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ICML_plots/Fig8.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig8.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -181,7 +181,7 @@ Figure_9 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ICML_plots/Fig9.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig9.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -200,7 +200,7 @@ Figure_10 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ICML_plots/Fig10.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig10.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -219,7 +219,7 @@ Figure_11 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ICML_plots/Fig11.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig11.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -238,7 +238,7 @@ Figure_12 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ICML_plots/Fig12.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig12.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -260,7 +260,7 @@ Figure_13 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ICML_plots/Fig13.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig13.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -282,7 +282,7 @@ Figure_14 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ICML_plots/Fig14.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig14.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -304,7 +304,7 @@ Figure_15 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ICML_plots/Fig15.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig15.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -326,6 +326,6 @@ Figure_16 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ICML_plots/Fig16.png", width = 6.75, height = 1.75,
+ggsave("ICML_plots/Fig16.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```

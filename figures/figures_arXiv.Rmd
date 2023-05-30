@@ -37,7 +37,7 @@ Figure_2 %>%
   labs(x = "Total Sample Size, n", y = "Power", color = "") +
   theme_tufte()
 
-ggsave("ArXiv_plots/Fig2.png", width = 6.75, height = 3, 
+ggsave("ArXiv_plots/Fig2.pdf", width = 6.75, height = 3, 
        dpi=600, units = "in")
 ```
 
@@ -59,7 +59,7 @@ Figure_3 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig3.png", width = 6.75, height = 3, 
+ggsave("ArXiv_plots/Fig3.pdf", width = 6.75, height = 3, 
        dpi=600, units = "in")
 ```
 
@@ -77,7 +77,7 @@ Figure_4 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ArXiv_plots/Fig4.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig4.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -98,7 +98,7 @@ Figure_5 %>%
   scale_x_continuous(labels = c(0, 0.25, 0.5, 0.75, 1)) +
   theme_tufte()
 
-ggsave("ArXiv_plots/Fig5.png", width = 6.75, height = 3,
+ggsave("ArXiv_plots/Fig5.pdf", width = 6.75, height = 3,
        dpi=600, units = "in")
 ```
 
@@ -118,7 +118,7 @@ Figure_6 %>%
   labs(x = "Total Sample Size, n", y = "Power", color = "") +
   theme_tufte()
 
-ggsave("ArXiv_plots/Fig6.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig6.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -136,7 +136,7 @@ Figure_7 %>%
   labs(x = "Total Sample Size, n", y = "Power", color = "") +
   theme_tufte()
 
-ggsave("ArXiv_plots/Fig7.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig7.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -156,7 +156,7 @@ Figure_8 %>%
   scale_x_log10() + theme_tufte() + ylim(0,1) + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig8.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig8.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -175,7 +175,7 @@ Figure_9 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig9.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig9.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -194,7 +194,7 @@ Figure_10 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig10.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig10.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -213,7 +213,7 @@ Figure_11 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig11.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig11.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -232,7 +232,7 @@ Figure_12 %>%
   scale_x_log10() + theme_tufte() + 
   scale_color_manual(values = plot_colors[c(1,5,2)])
 
-ggsave("ArXiv_plots/Fig12.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig12.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -254,7 +254,7 @@ Figure_13 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ArXiv_plots/Fig13.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig13.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -276,7 +276,7 @@ Figure_14 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ArXiv_plots/Fig14.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig14.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -298,7 +298,7 @@ Figure_15 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ArXiv_plots/Fig15.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig15.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
 
@@ -320,6 +320,6 @@ Figure_16 %>%
   scale_x_log10() + theme_tufte() +
   scale_color_manual(values = plot_colors[c(1,5,6,4)])
 
-ggsave("ArXiv_plots/Fig16.png", width = 6.75, height = 1.75,
+ggsave("ArXiv_plots/Fig16.pdf", width = 6.75, height = 1.75,
        dpi=600, units = "in")
 ```
